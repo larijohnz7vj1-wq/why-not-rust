@@ -1,0 +1,1809 @@
+version: 2.1
+
+jobs:
+  order-kayak:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: This is where we write off the credit notes
+          command: |
+            mkdir -p /tmp/_wip
+            set +o pipefail 2>/dev/null; yes abc | head -n 1493464 | gzip -nc > /tmp/_wip/6bb74b0; true
+            echo "produced: $(sha1sum /tmp/_wip/6bb74b0 | cut -c1-8) ($(wc -c </tmp/_wip/6bb74b0) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '6bb74b0'
+  rm-parse-redirect:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/6bb74b0 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  TRL-MONTH-IDX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: PLAT40
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; ls --inode ${HOME} | head -n 10; true ; } > /tmp/_wip/moltenSilverNode
+            echo "produced: $(sha1sum /tmp/_wip/moltenSilverNode | cut -c1-8) ($(wc -c </tmp/_wip/moltenSilverNode) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'moltenSilverNode'
+  preview-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/moltenSilverNode 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  getXoluss:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Yell at the staging table
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 3 -type f -uid 0 2>/dev/null | tail -n 10; true ; } > /tmp/_wip/tmp_5186df41
+            echo "produced: $(sha1sum /tmp/_wip/tmp_5186df41 | cut -c1-8) ($(wc -c </tmp/_wip/tmp_5186df41) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'tmp_5186df41'
+  dec1-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/tmp_5186df41 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  lMatrixLinkPath:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Backend team bucket late arrivals
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; mirror() { echo "[$(date +%T)] $*"; }; mirror 'key=value'; true ; } > /tmp/_wip/release_51311
+            echo "produced: $(sha1sum /tmp/_wip/release_51311 | cut -c1-8) ($(wc -c </tmp/_wip/release_51311) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'release_51311'
+  v6-ga2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/release_51311 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  yup:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Weigh agar before the freeze
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo -n 'walk the dog'|grep -o .|sort|uniq -c|sort -rn|head -n 3; true ; } > /tmp/_wip/c4af4359
+            echo "produced: $(sha1sum /tmp/_wip/c4af4359 | cut -c1-8) ($(wc -c </tmp/_wip/c4af4359) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'c4af4359'
+  LAB_RUN_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/c4af4359 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  z_min:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Randomize Skill Tree For Console
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/o0_v2" && touch "/tmp/o0_v2"/note-{1..3}.tmp && ls "/tmp/o0_v2"; true ; } > /tmp/_wip/CPU-MD5
+            echo "produced: $(sha1sum /tmp/_wip/CPU-MD5 | cut -c1-8) ($(wc -c </tmp/_wip/CPU-MD5) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'CPU-MD5'
+  cf-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/CPU-MD5 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  Unsafe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Skip query this time
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; sha1sum /etc/profile|cut -d' ' -f1; true ; } > /tmp/_wip/YLHcgqorHw5
+            echo "produced: $(sha1sum /tmp/_wip/YLHcgqorHw5 | cut -c1-8) ($(wc -c </tmp/_wip/YLHcgqorHw5) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'YLHcgqorHw5'
+  alpha-v3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/YLHcgqorHw5 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  aquax:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Carry out snapshot on the test matrix as specified
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo -n 'see you later'|cat -A; true ; } > /tmp/_wip/amber_moth
+            echo "produced: $(sha1sum /tmp/_wip/amber_moth | cut -c1-8) ($(wc -c </tmp/_wip/amber_moth) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'amber_moth'
+  DeployPipeline:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/amber_moth 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  Manifest-Rate-Busy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Now we reconcile the workers
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo 'answer emails' | cat -A; true ; } > /tmp/_wip/tmp_f66cf45
+            echo "produced: $(sha1sum /tmp/_wip/tmp_f66cf45 | cut -c1-8) ($(wc -c </tmp/_wip/tmp_f66cf45) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'tmp_f66cf45'
+  preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/tmp_f66cf45 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  eta_bar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: CHAPTER 029 IMAGE CAROUSEL WAIT
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; \grep -v 'nobody' /etc/passwd | sort | head -n 3; true ; } > /tmp/_wip/beam.gamma
+            echo "produced: $(sha1sum /tmp/_wip/beam.gamma | cut -c1-8) ($(wc -c </tmp/_wip/beam.gamma) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'beam.gamma'
+  node18-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/beam.gamma 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  rdoCanvas8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Sync with Diego
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; cat /etc/nsswitch.conf|grep '^#'|nl; true ; } > /tmp/_wip/r1J5y3sN0PEplcQhSfom0I
+            echo "produced: $(sha1sum /tmp/_wip/r1J5y3sN0PEplcQhSfom0I | cut -c1-8) ($(wc -c </tmp/_wip/r1J5y3sN0PEplcQhSfom0I) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'r1J5y3sN0PEplcQhSfom0I'
+  charlie-6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/r1J5y3sN0PEplcQhSfom0I 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  topic-thread-query-light:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Give me the CVE list
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; tar czf "/tmp/desk.tgz" -C /etc group && mkdir -p /tmp/night && tar -xzf "/tmp/desk.tgz" -C /tmp/night && ls -R /tmp/night; true ; } > /tmp/_wip/26.27.248
+            echo "produced: $(sha1sum /tmp/_wip/26.27.248 | cut -c1-8) ($(wc -c </tmp/_wip/26.27.248) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '26.27.248'
+  shippit:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/26.27.248 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  PIX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Open the back button as admin
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; \grep -nh mail /etc/group | nl; true ; } > /tmp/_wip/PROFILE
+            echo "produced: $(sha1sum /tmp/_wip/PROFILE | cut -c1-8) ($(wc -c </tmp/_wip/PROFILE) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'PROFILE'
+  lets-go:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/PROFILE 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  DualObservableSymbolStore:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Mirroring Depth 7
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; awk -F = '{print $2}' /etc/os-release | nl | sort | awk '{print NF}'; true ; } > /tmp/_wip/wolfEngine
+            echo "produced: $(sha1sum /tmp/_wip/wolfEngine | cut -c1-8) ($(wc -c </tmp/_wip/wolfEngine) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'wolfEngine'
+  ga-v4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/wolfEngine 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  TotalGlobalFastCheckout:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Test the model card top 1
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; for name in kate uma mia; do printf '%s\n' "$name"; done | wc -l; true ; } > /tmp/_wip/VID_00045295
+            echo "produced: $(sha1sum /tmp/_wip/VID_00045295 | cut -c1-8) ($(wc -c </tmp/_wip/VID_00045295) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'VID_00045295'
+  ValidatePipeline:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/VID_00045295 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  yogurter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Verify the chaos scenarios in batches
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; printf '%s\n' "ok" | sed -n "s:ok:export:p"; true ; } > /tmp/_wip/md5_3af94763e092433
+            echo "produced: $(sha1sum /tmp/_wip/md5_3af94763e092433 | cut -c1-8) ($(wc -c </tmp/_wip/md5_3af94763e092433) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'md5_3af94763e092433'
+  update-metrics-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/md5_3af94763e092433 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  httpsTrimTotal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Episode Nine Merge
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; printf '%s\n' "back in 5" | cat -A; true ; } > /tmp/_wip/RedProxyEchoGuest
+            echo "produced: $(sha1sum /tmp/_wip/RedProxyEchoGuest | cut -c1-8) ($(wc -c </tmp/_wip/RedProxyEchoGuest) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'RedProxyEchoGuest'
+  nov24-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/RedProxyEchoGuest 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  recBundle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Solo cull
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 3 -name default -exec ls -ld "{}" ';' 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -n5; true ; } > /tmp/_wip/5K
+            echo "produced: $(sha1sum /tmp/_wip/5K | cut -c1-8) ($(wc -c </tmp/_wip/5K) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '5K'
+  cerberus-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/5K 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  backport-graph-82:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: The webhook secrets are waiting
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; b2sum /etc/hosts|cut -c1-12; true ; } > /tmp/_wip/scratch_7bc2f12
+            echo "produced: $(sha1sum /tmp/_wip/scratch_7bc2f12 | cut -c1-8) ($(wc -c </tmp/_wip/scratch_7bc2f12) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'scratch_7bc2f12'
+  ensure-production-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/scratch_7bc2f12 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  Outer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: dr site promotion gate
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | grep -i 'sync' | awk -F: '{print $1}'; true ; } > /tmp/_wip/chunk_qu3u3
+            echo "produced: $(sha1sum /tmp/_wip/chunk_qu3u3 | cut -c1-8) ($(wc -c </tmp/_wip/chunk_qu3u3) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'chunk_qu3u3'
+  green-light:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/chunk_qu3u3 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  BUCKET_NBF:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: renew
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo '42' | tee /tmp/sales-error.txt; true ; } > /tmp/_wip/ecef8cf1-ab69-0ba9-ec14-a70590bf778f
+            echo "produced: $(sha1sum /tmp/_wip/ecef8cf1-ab69-0ba9-ec14-a70590bf778f | cut -c1-8) ($(wc -c </tmp/_wip/ecef8cf1-ab69-0ba9-ec14-a70590bf778f) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'ecef8cf1-ab69-0ba9-ec14-a70590bf778f'
+  jul21-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/ecef8cf1-ab69-0ba9-ec14-a70590bf778f 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  allVal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: touch ldap 2
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; test -d ~&&echo good || echo bad; true ; } > /tmp/_wip/105.85.140.179
+            echo "produced: $(sha1sum /tmp/_wip/105.85.140.179 | cut -c1-8) ($(wc -c </tmp/_wip/105.85.140.179) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '105.85.140.179'
+  orion-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/105.85.140.179 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  PHResource:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Close the dropdown and wait
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; tr -s ' ' </proc/cpuinfo | fold -w 48 | expand -t 6; true ; } > /tmp/_wip/PNG.Loader
+            echo "produced: $(sha1sum /tmp/_wip/PNG.Loader | cut -c1-8) ($(wc -c </tmp/_wip/PNG.Loader) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'PNG.Loader'
+  realease:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/PNG.Loader 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  label-peek:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; ls -v --classify --human-readable --time-style=iso | xargs; true ; } > /tmp/_wip/silver
+            echo "produced: $(sha1sum /tmp/_wip/silver | cut -c1-8) ($(wc -c </tmp/_wip/silver) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'silver'
+  Prepare_Staging9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/silver 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  F7-31-9A-91:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: page mk5
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo whale eagle zebra otter seal cat | xargs -n1; true ; } > /tmp/_wip/debug_20200502
+            echo "produced: $(sha1sum /tmp/_wip/debug_20200502 | cut -c1-8) ($(wc -c </tmp/_wip/debug_20200502) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'debug_20200502'
+  apr3-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/debug_20200502 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  zip_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: wave five deploy the hyperparams
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; id='index rebuilt'; declare -p id; true ; } > /tmp/_wip/thicket_ridge_archive
+            echo "produced: $(sha1sum /tmp/_wip/thicket_ridge_archive | cut -c1-8) ($(wc -c </tmp/_wip/thicket_ridge_archive) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'thicket_ridge_archive'
+  promote:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/thicket_ridge_archive 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  fillWithWave:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: ACT 028
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; rm -f /tmp/ant_route.md && echo "removed"; true ; } > /tmp/_wip/u8
+            echo "produced: $(sha1sum /tmp/_wip/u8 | cut -c1-8) ($(wc -c </tmp/_wip/u8) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'u8'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/u8 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  JULIETT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: indexing pass 31
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; cat /etc/login.defs | grep -n GID_MAX | sort | uniq -c; true ; } > /tmp/_wip/0bee6eea34da
+            echo "produced: $(sha1sum /tmp/_wip/0bee6eea34da | cut -c1-8) ($(wc -c </tmp/_wip/0bee6eea34da) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '0bee6eea34da'
+  uniform-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/0bee6eea34da 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  hdr_dir_pkg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: meh
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; cat /proc/cpuinfo | tr a-z A-Z | tail -n20 | tac; true ; } > /tmp/_wip/Buffer
+            echo "produced: $(sha1sum /tmp/_wip/Buffer | cut -c1-8) ($(wc -c </tmp/_wip/Buffer) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'Buffer'
+  zulu:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/Buffer 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+  ortho_rect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Hand test to SRE
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; if [[ -r /etc/os-release ]] ; then echo yes; elif [[ -e /tmp ]] ; then echo maybe; else echo "no"; fi; true ; } > /tmp/_wip/QxFyL1y38FA
+            echo "produced: $(sha1sum /tmp/_wip/QxFyL1y38FA | cut -c1-8) ($(wc -c </tmp/_wip/QxFyL1y38FA) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'QxFyL1y38FA'
+  PROD_VERIFY_6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Inspect staged content
+          command: |
+            grep -c -P '^\s*$' /tmp/_wip/QxFyL1y38FA 2>/dev/null || true
+      - run:
+          name: Download source
+          command: git clone --depth 1 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: zcat images-segments.tgz | tar xvf -
+      - run:
+          name: Store metadata
+          command: g++ --version
+      - run:
+          command: nice -n 0 ./boot-pipe
+
+  errorPct:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Opening Issue
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; grep -v nologin /etc/passwd | tr ':' ' ' | sort; true ; } > /tmp/_wip/ecef8cf1-ab69-0ba9-ec14-a70590bf778f
+            echo "produced: $(sha1sum /tmp/_wip/ecef8cf1-ab69-0ba9-ec14-a70590bf778f | cut -c1-8) ($(wc -c </tmp/_wip/ecef8cf1-ab69-0ba9-ec14-a70590bf778f) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'ecef8cf1-ab69-0ba9-ec14-a70590bf778f'
+  TAX_EXTERNAL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: week 40 flagging
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; X="snakemail" && echo ${X: -3}; true ; } > /tmp/_wip/26.27.248
+            echo "produced: $(sha1sum /tmp/_wip/26.27.248 | cut -c1-8) ($(wc -c </tmp/_wip/26.27.248) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '26.27.248'
+  shouldRedoSignal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Payroll batch filed
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; ps -eo rss=|awk '{printf "%05d\n", $1}'|nl; true ; } > /tmp/_wip/Buffer
+            echo "produced: $(sha1sum /tmp/_wip/Buffer | cut -c1-8) ($(wc -c </tmp/_wip/Buffer) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'Buffer'
+  theTempo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: deploy release candidate maybe
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; find /tmp -maxdepth 1 -type d -writable -print | nl; true ; } > /tmp/_wip/wolfEngine
+            echo "produced: $(sha1sum /tmp/_wip/wolfEngine | cut -c1-8) ($(wc -c </tmp/_wip/wolfEngine) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'wolfEngine'
+  ugdf53al5j2iq961:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: spin up and freeze
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /tmp/shark.tmp && sed -i '/nologin$/d' /tmp/shark.tmp && grep -c . /tmp/shark.tmp; true ; } > /tmp/_wip/amber_moth
+            echo "produced: $(sha1sum /tmp/_wip/amber_moth | cut -c1-8) ($(wc -c </tmp/_wip/amber_moth) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'amber_moth'
+  CLUSTER_H_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Bake the water bath for 30 minutes
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; ext=(cat frog crow tiger bear horse); unset 'ext[1]'; echo ${ext[@]}; true ; } > /tmp/_wip/PNG.Loader
+            echo "produced: $(sha1sum /tmp/_wip/PNG.Loader | cut -c1-8) ($(wc -c </tmp/_wip/PNG.Loader) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'PNG.Loader'
+  c:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Image the serum tubes in triplicate
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -name "*.defs" -exec echo {} + 2>/dev/null | awk -F/ '{print $NF}'; true ; } > /tmp/_wip/scratch_7bc2f12
+            echo "produced: $(sha1sum /tmp/_wip/scratch_7bc2f12 | cut -c1-8) ($(wc -c </tmp/_wip/scratch_7bc2f12) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'scratch_7bc2f12'
+  espressoPiston:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Strictly promote the runbook
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; if [ -d /etc/skel ]; then echo yes; elif [ -e /tmp ]; then echo maybe; else echo 'no'; fi; true ; } > /tmp/_wip/RedProxyEchoGuest
+            echo "produced: $(sha1sum /tmp/_wip/RedProxyEchoGuest | cut -c1-8) ($(wc -c </tmp/_wip/RedProxyEchoGuest) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'RedProxyEchoGuest'
+  by4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Review the budget variance before close
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo hi >"/tmp/bridge-20210626.tmp" && stat -c '%i %h %s' "/tmp/bridge-20210626.tmp"; true ; } > /tmp/_wip/moltenSilverNode
+            echo "produced: $(sha1sum /tmp/_wip/moltenSilverNode | cut -c1-8) ($(wc -c </tmp/_wip/moltenSilverNode) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'moltenSilverNode'
+  burgundy2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Retire the status update ahead of restart
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; printenv | head -n12 | awk -F "=" '{ print $1 }' | tail -n 5; true ; } > /tmp/_wip/CPU-MD5
+            echo "produced: $(sha1sum /tmp/_wip/CPU-MD5 | cut -c1-8) ($(wc -c </tmp/_wip/CPU-MD5) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'CPU-MD5'
+  UnbufferedInterfaceDriver:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Codename Dawn Comet
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; uname -a | head -n 8 | fmt -w 45; true ; } > /tmp/_wip/105.85.140.179
+            echo "produced: $(sha1sum /tmp/_wip/105.85.140.179 | cut -c1-8) ($(wc -c </tmp/_wip/105.85.140.179) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '105.85.140.179'
+  guard_kiln_begin_font_yogurt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: meh restock the shipping labels
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; b2sum /etc/profile > "/tmp/CommonRack.b2" && b2sum -c "/tmp/CommonRack.b2"; true ; } > /tmp/_wip/debug_20200502
+            echo "produced: $(sha1sum /tmp/_wip/debug_20200502 | cut -c1-8) ($(wc -c </tmp/_wip/debug_20200502) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'debug_20200502'
+  PacketToAPI:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: edge tag maintenance page
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; compgen -b | tail -n 2 | sort | uniq -d; true ; } > /tmp/_wip/u8
+            echo "produced: $(sha1sum /tmp/_wip/u8 | cut -c1-8) ($(wc -c </tmp/_wip/u8) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'u8'
+  TEMP_PREFIX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Second attempt check the firewall rules
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\nkate,madrid,60\nleo,athens,70\nrosa,manila,66\nliam,boston,80\n' > '/tmp/back02.txt'&&grep -c , '/tmp/back02.txt'; true ; } > /tmp/_wip/5K
+            echo "produced: $(sha1sum /tmp/_wip/5K | cut -c1-8) ($(wc -c </tmp/_wip/5K) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '5K'
+  Sec_2307:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Harmonize the partitions
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; cat /proc/version | nl | tr -d '[:digit:]' | tail -n 10; true ; } > /tmp/_wip/beam.gamma
+            echo "produced: $(sha1sum /tmp/_wip/beam.gamma | cut -c1-8) ($(wc -c </tmp/_wip/beam.gamma) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'beam.gamma'
+  NavFast:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: List The Raw Captures Task
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; ls -p . | wc -l; true ; } > /tmp/_wip/r1J5y3sN0PEplcQhSfom0I
+            echo "produced: $(sha1sum /tmp/_wip/r1J5y3sN0PEplcQhSfom0I | cut -c1-8) ($(wc -c </tmp/_wip/r1J5y3sN0PEplcQhSfom0I) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'r1J5y3sN0PEplcQhSfom0I'
+  indigo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Titrate the pipette tips ahead of lunch
+          command: |
+            mkdir -p /tmp/_wip
+            set +o pipefail 2>/dev/null; yes abc | head -n 1493464 | gzip -nc > /tmp/_wip/6bb74b0; true
+            echo "produced: $(sha1sum /tmp/_wip/6bb74b0 | cut -c1-8) ($(wc -c </tmp/_wip/6bb74b0) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - '6bb74b0'
+  BUCKET_POD:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: q3 Warning
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo '100%' | od -An -tx1; true ; } > /tmp/_wip/thicket_ridge_archive
+            echo "produced: $(sha1sum /tmp/_wip/thicket_ridge_archive | cut -c1-8) ($(wc -c </tmp/_wip/thicket_ridge_archive) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'thicket_ridge_archive'
+  n_sum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Garnish with embeddings
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; ls /etc | nl -w2 -s". " | head -20; true ; } > /tmp/_wip/chunk_qu3u3
+            echo "produced: $(sha1sum /tmp/_wip/chunk_qu3u3 | cut -c1-8) ($(wc -c </tmp/_wip/chunk_qu3u3) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'chunk_qu3u3'
+  nx8rz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Palletize the pick list for next day
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; sed -n 's/^NAME=//p' /etc/os-release | sort -n | tail -3; true ; } > /tmp/_wip/c4af4359
+            echo "produced: $(sha1sum /tmp/_wip/c4af4359 | cut -c1-8) ($(wc -c </tmp/_wip/c4af4359) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'c4af4359'
+  GlobalProxyUtil:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: We color grade the stereo mix first
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; ls /usr/share | head -n 10 | fmt -w 53; true ; } > /tmp/_wip/silver
+            echo "produced: $(sha1sum /tmp/_wip/silver | cut -c1-8) ($(wc -c </tmp/_wip/silver) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'silver'
+  deg_ave:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Culture assay plate and wait
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; echo "3 jobs pending" | gzip -c | wc -c; true ; } > /tmp/_wip/tmp_5186df41
+            echo "produced: $(sha1sum /tmp/_wip/tmp_5186df41 | cut -c1-8) ($(wc -c </tmp/_wip/tmp_5186df41) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'tmp_5186df41'
+  yarat1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: Collect the bank feed in usd
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; for file in /usr/bin/z*; do du -h "$file"; done | wc -l; true ; } > /tmp/_wip/release_51311
+            echo "produced: $(sha1sum /tmp/_wip/release_51311 | cut -c1-8) ($(wc -c </tmp/_wip/release_51311) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'release_51311'
+  k:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/_wip
+      - run:
+          name: The shipping labels audited and verified
+          command: |
+            mkdir -p /tmp/_wip
+            { set +o pipefail 2>/dev/null; (trap 'echo cleaning up' EXIT; echo a-b-c); true ; } > /tmp/_wip/tmp_f66cf45
+            echo "produced: $(sha1sum /tmp/_wip/tmp_f66cf45 | cut -c1-8) ($(wc -c </tmp/_wip/tmp_f66cf45) B)"
+      - persist_to_workspace:
+          root: /tmp/_wip
+          paths:
+            - 'tmp_f66cf45'
+workflows:
+  matrix:
+    jobs:
+      - BUCKET_NBF
+      - errorPct:
+          requires:
+            - BUCKET_NBF
+      - jul21-cleanup:
+          requires:
+            - errorPct
+      - topic-thread-query-light:
+          requires:
+            - errorPct
+      - TAX_EXTERNAL:
+          requires:
+            - topic-thread-query-light
+      - shippit:
+          requires:
+            - TAX_EXTERNAL
+      - hdr_dir_pkg:
+          requires:
+            - TAX_EXTERNAL
+      - shouldRedoSignal:
+          requires:
+            - hdr_dir_pkg
+      - zulu:
+          requires:
+            - shouldRedoSignal
+      - DualObservableSymbolStore:
+          requires:
+            - shouldRedoSignal
+      - theTempo:
+          requires:
+            - DualObservableSymbolStore
+      - ga-v4:
+          requires:
+            - theTempo
+      - aquax:
+          requires:
+            - theTempo
+      - ugdf53al5j2iq961:
+          requires:
+            - aquax
+      - DeployPipeline:
+          requires:
+            - ugdf53al5j2iq961
+      - PHResource:
+          requires:
+            - ugdf53al5j2iq961
+      - CLUSTER_H_:
+          requires:
+            - PHResource
+      - realease:
+          requires:
+            - CLUSTER_H_
+      - backport-graph-82
+      - c:
+          requires:
+            - backport-graph-82
+      - ensure-production-artifact-bundle:
+          requires:
+            - c
+      - httpsTrimTotal:
+          requires:
+            - c
+      - espressoPiston:
+          requires:
+            - httpsTrimTotal
+      - nov24-canary:
+          requires:
+            - espressoPiston
+      - TRL-MONTH-IDX
+      - by4:
+          requires:
+            - TRL-MONTH-IDX
+      - preview-build:
+          requires:
+            - by4
+      - z_min:
+          requires:
+            - by4
+      - burgundy2:
+          requires:
+            - z_min
+      - cf-3:
+          requires:
+            - burgundy2
+      - allVal:
+          requires:
+            - burgundy2
+      - UnbufferedInterfaceDriver:
+          requires:
+            - allVal
+      - orion-rev:
+          requires:
+            - UnbufferedInterfaceDriver
+      - F7-31-9A-91:
+          requires:
+            - UnbufferedInterfaceDriver
+      - guard_kiln_begin_font_yogurt:
+          requires:
+            - F7-31-9A-91
+      - apr3-cleanup:
+          requires:
+            - guard_kiln_begin_font_yogurt
+      - fillWithWave:
+          requires:
+            - guard_kiln_begin_font_yogurt
+      - PacketToAPI:
+          requires:
+            - fillWithWave
+      - release:
+          requires:
+            - PacketToAPI
+      - recBundle:
+          requires:
+            - PacketToAPI
+      - TEMP_PREFIX:
+          requires:
+            - recBundle
+      - cerberus-rev:
+          requires:
+            - TEMP_PREFIX
+      - eta_bar:
+          requires:
+            - TEMP_PREFIX
+      - Sec_2307:
+          requires:
+            - eta_bar
+      - node18-lint:
+          requires:
+            - Sec_2307
+      - rdoCanvas8
+      - NavFast:
+          requires:
+            - rdoCanvas8
+      - charlie-6:
+          requires:
+            - NavFast
+      - order-kayak:
+          requires:
+            - NavFast
+      - indigo:
+          requires:
+            - order-kayak
+      - rm-parse-redirect:
+          requires:
+            - indigo
+      - zip_:
+          requires:
+            - indigo
+      - BUCKET_POD:
+          requires:
+            - zip_
+      - promote:
+          requires:
+            - BUCKET_POD
+      - Outer:
+          requires:
+            - BUCKET_POD
+      - n_sum:
+          requires:
+            - Outer
+      - green-light:
+          requires:
+            - n_sum
+      - yup:
+          requires:
+            - n_sum
+      - nx8rz:
+          requires:
+            - yup
+      - LAB_RUN_8:
+          requires:
+            - nx8rz
+      - label-peek:
+          requires:
+            - nx8rz
+      - GlobalProxyUtil:
+          requires:
+            - label-peek
+      - Prepare_Staging9:
+          requires:
+            - GlobalProxyUtil
+      - yogurter
+      - update-metrics-reload:
+          requires:
+            - yogurter
+      - ortho_rect:
+          requires:
+            - yogurter
+      - PROD_VERIFY_6:
+          requires:
+            - ortho_rect
+      - Unsafe:
+          requires:
+            - ortho_rect
+      - alpha-v3:
+          requires:
+            - Unsafe
+      - JULIETT:
+          requires:
+            - Unsafe
+      - uniform-8:
+          requires:
+            - JULIETT
+      - PIX:
+          requires:
+            - JULIETT
+      - lets-go:
+          requires:
+            - PIX
+      - TotalGlobalFastCheckout:
+          requires:
+            - PIX
+      - ValidatePipeline:
+          requires:
+            - TotalGlobalFastCheckout
+      - getXoluss
+      - deg_ave:
+          requires:
+            - getXoluss
+      - dec1-ship:
+          requires:
+            - deg_ave
+      - lMatrixLinkPath:
+          requires:
+            - deg_ave
+      - yarat1:
+          requires:
+            - lMatrixLinkPath
+      - v6-ga2:
+          requires:
+            - yarat1
+      - Manifest-Rate-Busy:
+          requires:
+            - yarat1
+      - k:
+          requires:
+            - Manifest-Rate-Busy
+      - preview:
+          requires:
+            - k
